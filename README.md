@@ -25,34 +25,34 @@ Or install it yourself as:
 Extract credentials from generic URIs:
 
 ```ruby
-    config = URIConfig::Config.new("https://my_user:my_pass@s3.amazonaws.com/a_path")
+config = URIConfig::Config.new("https://my_user:my_pass@s3.amazonaws.com/a_path")
 
-    config.username # => "my_user"
-    config.password # => "my_password"
-    config.path # => "/bucket_name"
+config.username # => "my_user"
+config.password # => "my_password"
+config.path # => "/bucket_name"
 ```
 
 Build wrapper classes for more specific configuration hashes:
 
 ```ruby
-  class S3Config < Config
-    alias_method :access_key_id, :username
-    alias_method :secret_access_key, :password
+class S3Config < Config
+  alias_method :access_key_id, :username
+  alias_method :secret_access_key, :password
 
-    def bucket
-      path[1..-1]
-    end
-
-    config :access_key_id, :secret_access_key, :bucket
+  def bucket
+    path[1..-1]
   end
 
-  config = S3Config.new("https://AKIAJUSERNAME:abcd12345678@s3.amazonaws.com/bucket_name")
+  config :access_key_id, :secret_access_key, :bucket
+end
 
-  config.access_key_id # => "AKIAJUSERNAME"
-  config.secret_access_key # => "abcd12345678"
-  config.bucket # => "bucket_name"
+config = S3Config.new("https://AKIAJUSERNAME:abcd12345678@s3.amazonaws.com/bucket_name")
 
-  config.config # => {access_key_id: "AKIAJUSERNAME, secret_access_key: "abcd12345678", bucket: "bucket_name" }
+config.access_key_id # => "AKIAJUSERNAME"
+config.secret_access_key # => "abcd12345678"
+config.bucket # => "bucket_name"
+
+config.config # => {access_key_id: "AKIAJUSERNAME, secret_access_key: "abcd12345678", bucket: "bucket_name" }
 ```
 
 ## Contributing
