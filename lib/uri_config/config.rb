@@ -15,6 +15,14 @@ module URIConfig
       CGI.unescape uri.password
     end
 
+    def host
+      uri.host
+    end
+
+    def port
+      uri.port
+    end
+
     def path
       uri.path
     end

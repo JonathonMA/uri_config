@@ -20,6 +20,10 @@ module URIConfig
         password: "7d123FASD123sljnfdsaSADFasdfhsdf12ddFDH4",
         path: "/bucket_name",
       },
+      "https://example.com:8080" => {
+        host: "example.com",
+        port: 8080,
+      },
     }.each do |url, components|
       context "with a URL of #{url}" do
         let(:url) { url }
