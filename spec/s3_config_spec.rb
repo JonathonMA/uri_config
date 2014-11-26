@@ -1,3 +1,5 @@
+require 'uri_config'
+
 module URIConfig
   class S3Config < Config
     alias_method :access_key_id, :username
