@@ -2,8 +2,8 @@ require 'uri_config'
 
 module URIConfig
   class S3Config < Config
-    alias_method :access_key_id, :username
-    alias_method :secret_access_key, :password
+    map :access_key_id, from: :username
+    map :secret_access_key, from: :password
 
     def bucket
       path[1..-1]

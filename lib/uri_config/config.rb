@@ -7,6 +7,10 @@ module URIConfig
       @url = url
     end
 
+    def self.map(key, options = {})
+      alias_method key, options.fetch(:from)
+    end
+
     def username
       CGI.unescape uri.user
     end
