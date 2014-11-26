@@ -11,6 +11,12 @@ module URIConfig
       alias_method key, options.fetch(:from)
     end
 
+    def self.parameter(method, query_parameter = method)
+      define_method(method) do
+        query[query_parameter.to_s].first
+      end
+    end
+
     def username
       CGI.unescape uri.user
     end
