@@ -23,6 +23,11 @@ module URIConfig
         authentication: 'plain',
         domain: 'yourdomain.com',
       },
+      "smtp://localhost:1025" => {
+        address: "localhost",
+        port: 1025,
+        enable_starttls_auto: false,
+      },
     }.each do |url, components|
       context "with a URL of #{url}" do
         let(:url) { url }
@@ -31,6 +36,10 @@ module URIConfig
           it "has a #{key} of #{value}" do
             expect(subject.send(key)).to eq value
           end
+        end
+
+        it "has a config hash" do
+          expect(subject.config).to eq components
         end
       end
     end

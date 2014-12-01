@@ -30,11 +30,11 @@ module URIConfig
     end
 
     def username
-      CGI.unescape uri.user
+      CGI.unescape uri.user if uri.user
     end
 
     def password
-      CGI.unescape uri.password
+      CGI.unescape uri.password if uri.password
     end
 
     def host
@@ -58,9 +58,9 @@ module URIConfig
 
     def self.config(*keys)
       define_method :config do
-        keys.each_with_object({}) do |key, hash|
-          hash[key] = send(key)
-        end
+        keys
+          .each_with_object({}) { |key, hash| hash[key] = send(key) }
+          .reject { |_, value| value.nil? }
       end
     end
 
