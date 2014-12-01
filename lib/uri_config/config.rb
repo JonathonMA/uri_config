@@ -17,6 +17,18 @@ module URIConfig
       end
     end
 
+    def self.configure_from(env_var)
+      return unless (value = ENV[env_var])
+
+      yield new(value)
+    end
+
+    def ==(other)
+      return false unless other.is_a?(self.class)
+
+      url == other.url
+    end
+
     def username
       CGI.unescape uri.user
     end
@@ -52,6 +64,10 @@ module URIConfig
       end
     end
 
+    protected
+
+    attr_reader :url
+
     private
 
     def query
@@ -59,7 +75,7 @@ module URIConfig
     end
 
     def uri
-      @uri ||= URI.parse @url
+      @uri ||= URI.parse url
     end
   end
 end

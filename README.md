@@ -55,6 +55,16 @@ config.bucket # => "bucket_name"
 config.config # => {access_key_id: "AKIAJUSERNAME, secret_access_key: "abcd12345678", bucket: "bucket_name" }
 ```
 
+Use the `.configure_from` helper to configure based on environment variables, e.g. config/initializers/mandrill.rb:
+
+```ruby
+require "uri_config/action_mailer_config"
+
+URIConfig::ActionMailerConfig.configure_from('ACTION_MAILER_URL') do |c|
+  Rails.application.config.action_mailer.smtp_settings = c.config
+end
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/JonathonMA/uri_config/fork )
