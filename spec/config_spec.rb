@@ -56,7 +56,7 @@ module URIConfig
 
         specify do
           expect(
-            URIConfig::Config.values_from("TEST_URL", :username, :password)
+            URIConfig::Config.values_from("TEST_URL", :username, :password),
           ).to eq(%w(user pass))
         end
       end
