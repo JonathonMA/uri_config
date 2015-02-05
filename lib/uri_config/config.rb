@@ -23,6 +23,11 @@ module URIConfig
       yield new(value)
     end
 
+    def self.values_from(env_var, *params)
+      config = new(ENV.fetch(env_var))
+      params.map { |param| config.public_send(param) }
+    end
+
     def ==(other)
       return false unless other.is_a?(self.class)
 

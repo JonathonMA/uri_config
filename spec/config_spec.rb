@@ -36,6 +36,32 @@ module URIConfig
       end
     end
 
+    describe ".values_from" do
+      context "when TEST_URL is not set" do
+        specify do
+          expect do
+            URIConfig::Config.values_from("TEST_URL")
+          end.to raise_error
+        end
+      end
+
+      context "when TEST_URL is set" do
+        before(:each) do
+          ENV["TEST_URL"] = "https://user:pass@example.com/foo"
+        end
+
+        after(:each) do
+          ENV["TEST_URL"] = nil
+        end
+
+        specify do
+          expect(
+            URIConfig::Config.values_from("TEST_URL", :username, :password)
+          ).to eq(%w(user pass))
+        end
+      end
+    end
+
     describe ".configure_from" do
       context "when TEST_URL is not set" do
         specify do
