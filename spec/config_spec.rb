@@ -87,5 +87,14 @@ module URIConfig
         end
       end
     end
+
+    # This behaviour will make it ... difficult to troubleshoot
+    it "should not leak secrets on error" do
+      url = "https://USER:secret@foo.bar.com@foo.bar.com/"
+
+      expect do
+        URIConfig::Config.new(url).password
+      end.to raise_error("bad URI(is not URI?): <URL_SUPPRESSED>")
+    end
   end
 end
