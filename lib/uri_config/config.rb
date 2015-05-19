@@ -81,7 +81,7 @@ module URIConfig
 
     def uri
       @uri ||= URI.parse url
-    rescue URI::InvalidURIError => e
+    rescue URI::InvalidURIError
       raise URI::InvalidURIError, "Invalid URI: <URL_SUPPRESSED>"
     end
   end
