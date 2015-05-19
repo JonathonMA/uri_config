@@ -81,9 +81,8 @@ module URIConfig
 
     def uri
       @uri ||= URI.parse url
-    rescue => e
-      e.message.gsub!(url, "<URL_SUPPRESSED>")
-      raise e
+    rescue URI::InvalidURIError => e
+      raise URI::InvalidURIError, "Invalid URI: <URL_SUPPRESSED>"
     end
   end
 end

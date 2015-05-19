@@ -94,7 +94,7 @@ module URIConfig
 
       expect do
         URIConfig::Config.new(url).password
-      end.to raise_error("bad URI(is not URI?): <URL_SUPPRESSED>")
+      end.to raise_error("Invalid URI: <URL_SUPPRESSED>")
     end
   end
 end
