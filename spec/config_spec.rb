@@ -41,7 +41,7 @@ module URIConfig
         specify do
           expect do
             URIConfig::Config.values_from("TEST_URL")
-          end.to raise_error
+          end.to raise_error KeyError
         end
       end
 
