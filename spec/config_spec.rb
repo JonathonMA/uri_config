@@ -80,6 +80,13 @@ module URIConfig
           ENV["TEST_URL"] = nil
         end
 
+        context "with no block" do
+          specify do
+            config = URIConfig::Config.configure_from("TEST_URL")
+            expect(config.host).to eq "example.com"
+          end
+        end
+
         specify do
           expect do |b|
             URIConfig::Config.configure_from("TEST_URL", &b)
@@ -104,6 +111,13 @@ module URIConfig
 
         after(:each) do
           ENV["TEST_URL"] = nil
+        end
+
+        context "with no block" do
+          specify do
+            config = URIConfig::Config.configure_from("TEST_URL")
+            expect(config.host).to eq "example.com"
+          end
         end
 
         specify do

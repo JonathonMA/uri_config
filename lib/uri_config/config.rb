@@ -20,13 +20,19 @@ module URIConfig
     def self.configure_from(env_var)
       return unless (value = ENV[env_var])
 
-      yield new(value)
+      config = new(value)
+      yield config if block_given?
+
+      config
     end
 
     def self.configure_from!(env_var)
       return unless (value = ENV.fetch(env_var))
 
-      yield new(value)
+      config = new(value)
+      yield config if block_given?
+
+      config
     end
 
     def self.values_from(env_var, *params)
