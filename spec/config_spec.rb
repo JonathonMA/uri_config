@@ -88,6 +88,32 @@ module URIConfig
       end
     end
 
+    describe ".configure_from!" do
+      context "when TEST_URL is not set" do
+        specify do
+          expect do
+            URIConfig::Config.configure_from!("TEST_URL") {}
+          end.to raise_error KeyError, 'key not found: "TEST_URL"'
+        end
+      end
+
+      context "when TEST_URL is set" do
+        before(:each) do
+          ENV["TEST_URL"] = "https://example.com/foo"
+        end
+
+        after(:each) do
+          ENV["TEST_URL"] = nil
+        end
+
+        specify do
+          expect do |b|
+            URIConfig::Config.configure_from!("TEST_URL", &b)
+          end.to yield_with_args(URIConfig::Config.new(ENV["TEST_URL"]))
+        end
+      end
+    end
+
     # This behaviour will make it ... difficult to troubleshoot
     it "should not leak secrets on error" do
       url = "https://USER:secret@foo.bar.com@foo.bar.com/"

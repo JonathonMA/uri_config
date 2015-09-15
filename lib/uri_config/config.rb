@@ -23,6 +23,12 @@ module URIConfig
       yield new(value)
     end
 
+    def self.configure_from!(env_var)
+      return unless (value = ENV.fetch(env_var))
+
+      yield new(value)
+    end
+
     def self.values_from(env_var, *params)
       config = new(ENV.fetch(env_var))
       params.map { |param| config.public_send(param) }
