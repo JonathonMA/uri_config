@@ -93,7 +93,7 @@ module URIConfig
         specify do
           expect do
             URIConfig::Config.configure_from!("TEST_URL") {}
-          end.to raise_error KeyError, 'key not found: "TEST_URL"'
+          end.to raise_error KeyError
         end
       end
 
