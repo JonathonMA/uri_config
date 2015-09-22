@@ -87,6 +87,15 @@ module URIConfig
           end
         end
 
+        context "with a block" do
+          specify do
+            host = URIConfig::Config.configure_from("TEST_URL") do |config|
+              config.host
+            end
+            expect(host).to eq "example.com"
+          end
+        end
+
         specify do
           expect do |b|
             URIConfig::Config.configure_from("TEST_URL", &b)

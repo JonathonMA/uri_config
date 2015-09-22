@@ -17,26 +17,25 @@ module URIConfig
       end
     end
 
-    def self.configure_from(env_var)
-      return unless (value = ENV[env_var])
-
-      config = new(value)
-      yield config if block_given?
-
-      config
+    def self.configure_from(env_var, &block)
+      configure_from!(env_var, &block)
+    rescue KeyError
+      nil
     end
 
     def self.configure_from!(env_var)
-      return unless (value = ENV.fetch(env_var))
+      config = new ENV.fetch(env_var)
 
-      config = new(value)
-      yield config if block_given?
-
-      config
+      if block_given?
+        yield config
+      else
+        config
+      end
     end
 
     def self.values_from(env_var, *params)
-      config = new(ENV.fetch(env_var))
+      config = configure_from!(env_var)
+
       params.map { |param| config.public_send(param) }
     end
 
