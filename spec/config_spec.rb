@@ -41,7 +41,7 @@ module URIConfig
         specify do
           expect do
             URIConfig::Config.values_from("TEST_URL")
-          end.to raise_error KeyError
+          end.to raise_error Config::FETCH_ERROR
         end
       end
 
@@ -109,7 +109,7 @@ module URIConfig
         specify do
           expect do
             URIConfig::Config.configure_from!("TEST_URL") {}
-          end.to raise_error KeyError
+          end.to raise_error Config::FETCH_ERROR
         end
       end
 

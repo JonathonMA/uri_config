@@ -3,6 +3,8 @@ require 'cgi'
 
 module URIConfig
   class Config
+    FETCH_ERROR = (RUBY_VERSION < "1.9" ? ::IndexError : ::KeyError)
+
     def initialize(url)
       @url = url
     end
@@ -19,7 +21,7 @@ module URIConfig
 
     def self.configure_from(env_var, &block)
       configure_from!(env_var, &block)
-    rescue KeyError
+    rescue FETCH_ERROR
       nil
     end
 
