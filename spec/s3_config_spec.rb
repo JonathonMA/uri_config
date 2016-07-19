@@ -2,8 +2,8 @@ require 'uri_config'
 
 module URIConfig
   class S3Config < Config
-    map :access_key_id, from: :username
-    map :secret_access_key, from: :password
+    map :access_key_id, :from => :username
+    map :secret_access_key, :from => :password
 
     def bucket
       path[1..-1]
@@ -17,9 +17,9 @@ module URIConfig
 
     {
       "https://AKIAJBPUOK67MOQ3VVXQ:7d123FASD123sljnfdsaSADFasdfhsdf12ddFDH4@s3.amazonaws.com/bucket_name" => {
-        access_key_id: "AKIAJBPUOK67MOQ3VVXQ",
-        secret_access_key: "7d123FASD123sljnfdsaSADFasdfhsdf12ddFDH4",
-        bucket: "bucket_name",
+        :access_key_id => "AKIAJBPUOK67MOQ3VVXQ",
+        :secret_access_key => "7d123FASD123sljnfdsaSADFasdfhsdf12ddFDH4",
+        :bucket => "bucket_name",
       },
     }.each do |url, components|
       context "with a URL of #{url}" do

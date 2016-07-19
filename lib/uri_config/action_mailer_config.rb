@@ -2,8 +2,8 @@ require 'uri_config'
 
 module URIConfig
   class ActionMailerConfig < URIConfig::Config
-    map :address, from: :host
-    map :user_name, from: :username
+    map :address, :from => :host
+    map :user_name, :from => :username
 
     parameter :authentication
     parameter :domain
@@ -19,7 +19,7 @@ module URIConfig
       :user_name,
       :password,
       :authentication,
-      :domain,
+      :domain
     )
   end
 end

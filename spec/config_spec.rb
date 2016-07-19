@@ -6,23 +6,23 @@ module URIConfig
 
     {
       "https://TESTMERCHANT1:abcd1234abcd@secure.ap.tnspayments.com" => {
-        username: 'TESTMERCHANT1',
-        password: 'abcd1234abcd',
-        base_uri: 'https://secure.ap.tnspayments.com',
+        :username => 'TESTMERCHANT1',
+        :password => 'abcd1234abcd',
+        :base_uri => 'https://secure.ap.tnspayments.com',
       },
       "https://foo:bar@us-west-2.amazonaws.com/namespace" => {
-        username: "foo",
-        password: "bar",
-        path: "/namespace",
+        :username => "foo",
+        :password => "bar",
+        :path => "/namespace",
       },
       "https://AKIAJBPUOK67MOQ3VVXQ:7d123FASD123sljnfdsaSADFasdfhsdf12ddFDH4@s3.amazonaws.com/bucket_name" => {
-        username: "AKIAJBPUOK67MOQ3VVXQ",
-        password: "7d123FASD123sljnfdsaSADFasdfhsdf12ddFDH4",
-        path: "/bucket_name",
+        :username => "AKIAJBPUOK67MOQ3VVXQ",
+        :password => "7d123FASD123sljnfdsaSADFasdfhsdf12ddFDH4",
+        :path => "/bucket_name",
       },
       "https://example.com:8080" => {
-        host: "example.com",
-        port: 8080,
+        :host => "example.com",
+        :port => 8080,
       },
     }.each do |url, components|
       context "with a URL of #{url}" do
@@ -56,7 +56,7 @@ module URIConfig
 
         specify do
           expect(
-            URIConfig::Config.values_from("TEST_URL", :username, :password),
+            URIConfig::Config.values_from("TEST_URL", :username, :password)
           ).to eq(%w(user pass))
         end
       end
