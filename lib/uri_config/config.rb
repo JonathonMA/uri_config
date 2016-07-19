@@ -38,7 +38,7 @@ module URIConfig
     def self.values_from(env_var, *params)
       config = configure_from!(env_var)
 
-      params.map { |param| config.public_send(param) }
+      params.map { |param| config.send(param) }
     end
 
     def ==(other)
