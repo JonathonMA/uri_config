@@ -74,9 +74,9 @@ module URIConfig
 
     def self.config(*keys)
       define_method :config do
-        keys
-          .each_with_object({}) { |key, hash| hash[key] = send(key) }
-          .reject { |_, value| value.nil? }
+        keys.
+          each_with_object({}) { |key, hash| hash[key] = send(key) }.
+          reject { |_, value| value.nil? }
       end
     end
 
