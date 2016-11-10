@@ -5,10 +5,10 @@ module URIConfig
     subject { described_class.new(url) }
 
     {
-      "https://TESTMERCHANT1:abcd1234abcd@secure.ap.tnspayments.com" => {
+      "https://TESTMERCHANT1:abcd1234abcd@secure.ap.tnspayments.com/gateway" => {
         :username => 'TESTMERCHANT1',
         :password => 'abcd1234abcd',
-        :base_uri => 'https://secure.ap.tnspayments.com',
+        :base_uri => 'https://secure.ap.tnspayments.com/gateway',
       },
       "https://foo:bar@us-west-2.amazonaws.com/namespace" => {
         :username => "foo",
