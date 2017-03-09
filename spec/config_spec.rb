@@ -23,6 +23,7 @@ module URIConfig
       "https://example.com:8080" => {
         :host => "example.com",
         :port => 8080,
+        :scheme => "https",
       },
     }.each do |url, components|
       context "with a URL of #{url}" do

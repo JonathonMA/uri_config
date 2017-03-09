@@ -67,6 +67,10 @@ module URIConfig
       uri.path
     end
 
+    def scheme
+      uri.scheme
+    end
+
     def base_uri
       uri.dup.tap do |uri|
         uri.user = nil
