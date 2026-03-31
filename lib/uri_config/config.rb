@@ -96,7 +96,10 @@ module URIConfig
     private
 
     def query
-      CGI.parse(uri.query || '')
+      URI.decode_www_form(uri.query || '')
+        .each_with_object(Hash.new { |hash, key| hash[key] = [] }) do |(key, value), hash|
+          hash[key] << value
+        end
     end
 
     def uri
